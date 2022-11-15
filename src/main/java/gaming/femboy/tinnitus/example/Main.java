@@ -1,8 +1,8 @@
-package femboy.gaming.tinnitus.example;
+package gaming.femboy.tinnitus.example;
 
-import femboy.gaming.tinnitus.EventManager;
-import femboy.gaming.tinnitus.Listener;
-import femboy.gaming.tinnitus.Reactor;
+import gaming.femboy.tinnitus.EventManager;
+import gaming.femboy.tinnitus.Listener;
+import gaming.femboy.tinnitus.Reactor;
 
 import java.util.Random;
 

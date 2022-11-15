@@ -1,6 +1,6 @@
-package femboy.gaming.tinnitus;
+package gaming.femboy.tinnitus;
 
-import femboy.gaming.tinnitus.event.Event;
+import gaming.femboy.tinnitus.event.Event;
 
 import java.util.LinkedList;
 import java.util.List;

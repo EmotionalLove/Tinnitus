@@ -1,6 +1,6 @@
-package femboy.gaming.tinnitus.example;
+package gaming.femboy.tinnitus.example;
 
-import femboy.gaming.tinnitus.event.Event;
+import gaming.femboy.tinnitus.event.Event;
 
 public class TestEvent extends Event {
 

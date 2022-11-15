@@ -1,4 +1,4 @@
-package femboy.gaming.tinnitus.event;
+package gaming.femboy.tinnitus.event;
 
 public class CancellableEvent extends Event {
 
