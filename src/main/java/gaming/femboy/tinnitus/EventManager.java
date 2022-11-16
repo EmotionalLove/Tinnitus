@@ -2,13 +2,13 @@ package gaming.femboy.tinnitus;
 
 import gaming.femboy.tinnitus.event.Event;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class EventManager {
 
     private List<Listener> listenerRegistry = new LinkedList<>();
+    private HashMap<Class<? extends Listener>, List<Reactor<? extends Event>>> reactions = new HashMap<>();
 
     public int registerListener(Listener listener) {
         int index = listenerRegistry.size();
@@ -18,7 +18,7 @@ public class EventManager {
 
     public int invokeEvent(Event event) {
         AtomicInteger acceptedCount = new AtomicInteger();
-        listenerRegistry.forEach(l -> acceptedCount.addAndGet(l.processEvent(event)));
+        listenerRegistry.forEach(l -> acceptedCount.addAndGet(l.processEvent(l.getClass(), this, event)));
         return acceptedCount.get();
     }
 
@@ -26,4 +26,7 @@ public class EventManager {
         listenerRegistry.clear();
     }
 
+    public HashMap<Class<? extends Listener>, List<Reactor<? extends Event>>> getReactions() {
+        return reactions;
+    }
 }

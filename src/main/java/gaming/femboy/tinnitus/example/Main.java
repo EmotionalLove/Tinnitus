@@ -12,6 +12,7 @@ public class Main implements Listener {
 
     public void start() {
         manager.registerListener(this);
+        manager.registerListener(new EmptyListener());
         TestEvent event = new TestEvent();
         manager.invokeEvent(event);
         PreExitTestEvent event1 = new PreExitTestEvent();
@@ -25,12 +26,12 @@ public class Main implements Listener {
 
     private final Reactor<?> onTest = new Reactor<TestEvent>(e -> {
         System.out.println("Nice! " + e.getTimeReacted());
-    }).register(this);
+    }).register(this.manager, this);
 
     private final Reactor<?> onExit = new Reactor<PreExitTestEvent>(e -> {
         Random random = new Random();
         e.setCancelled(random.nextBoolean());
-    }).register(this);
+    }).register(this.manager, this);
 
     public static void main(String[] args) {
         new Main().start();

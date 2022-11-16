@@ -23,8 +23,8 @@ public class Reactor<T extends Event> {
         return true;
     }
 
-    public Reactor<?> register(Listener list) {
-        list.addEventReaction(this);
+    public Reactor<?> register(EventManager manager, Listener list) {
+        list.addEventReaction(manager, this);
         return this;
     }
 }
