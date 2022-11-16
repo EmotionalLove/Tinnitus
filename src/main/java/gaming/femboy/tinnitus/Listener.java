@@ -12,7 +12,7 @@ public interface Listener {
         if (flag) {
             manager.getReactions().get(this.getClass()).add(event);
         } else {
-            var list = new ArrayList<Reactor<? extends Event>>();
+            ArrayList<Reactor<? extends Event>> list = new ArrayList<>();
             list.add(event);
             manager.getReactions().put(this.getClass(), list);
         }
@@ -20,7 +20,7 @@ public interface Listener {
 
     default int processEvent(Class<? extends Listener> listenerClass, EventManager manager, Event event) {
         int acceptedCount = 0;
-        var list = manager.getReactions().get(listenerClass);
+        List<Reactor<? extends Event>> list = manager.getReactions().get(listenerClass);
         if (list == null) return acceptedCount;
         for (Reactor<? extends Event> reaction : list) {
             if (reaction.react(event)) {
