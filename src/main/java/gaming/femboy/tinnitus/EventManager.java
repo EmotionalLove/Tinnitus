@@ -16,6 +16,18 @@ public class EventManager {
         return index;
     }
 
+    public boolean removeListener(int index) {
+        if (index > listenerRegistry.size()) return false;
+        var listener = listenerRegistry.get(index);
+        removeListener(listener);
+        return true;
+    }
+
+    public void removeListener(Listener listener) {
+        reactions.remove(listener.getClass());
+        listenerRegistry.remove(listener);
+    }
+
     public int invokeEvent(Event event) {
         AtomicInteger acceptedCount = new AtomicInteger();
         listenerRegistry.forEach(l -> acceptedCount.addAndGet(l.processEvent(l.getClass(), this, event)));

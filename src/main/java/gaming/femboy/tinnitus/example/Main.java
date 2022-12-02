@@ -20,7 +20,12 @@ public class Main implements Listener {
         if (event1.isCancelled()) {
             manager.clear();
             start();
+            return;
         }
+        System.out.println("Ok we're done");
+        manager.removeListener(this);
+        TestEvent event2 = new TestEvent();
+        manager.invokeEvent(event2);
         return;
     }
 
