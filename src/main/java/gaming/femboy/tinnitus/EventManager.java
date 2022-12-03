@@ -18,7 +18,7 @@ public class EventManager {
 
     public boolean removeListener(int index) {
         if (index > listenerRegistry.size()) return false;
-        var listener = listenerRegistry.get(index);
+        Listener listener = listenerRegistry.get(index);
         removeListener(listener);
         return true;
     }
