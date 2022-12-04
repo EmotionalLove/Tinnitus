@@ -3,24 +3,19 @@ package gaming.femboy.tinnitus;
 import gaming.femboy.tinnitus.event.Event;
 
 import java.util.*;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class EventManager {
 
-    private List<Listener> listenerRegistry = new LinkedList<>();
+    private LinkedBlockingQueue<Listener> listenerRegistry = new LinkedBlockingQueue<>();
     private HashMap<Class<? extends Listener>, List<Reactor<? extends Event>>> reactions = new HashMap<>();
 
     public int registerListener(Listener listener) {
         int index = listenerRegistry.size();
         listenerRegistry.add(listener);
         return index;
-    }
-
-    public boolean removeListener(int index) {
-        if (index > listenerRegistry.size()) return false;
-        Listener listener = listenerRegistry.get(index);
-        removeListener(listener);
-        return true;
     }
 
     public void removeListener(Listener listener) {
